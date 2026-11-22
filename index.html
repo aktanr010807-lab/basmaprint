@@ -32,10 +32,12 @@
   h1{font-family:Unbounded;font-weight:900;font-size:clamp(34px,10.5vw,48px);line-height:1;margin-top:14px;position:relative;z-index:2}
   .sub{margin-top:14px;font-size:16px;line-height:1.45;opacity:.92;max-width:320px;position:relative;z-index:2}
   [hidden]{display:none!important}
-  .art{position:relative;height:150px;margin-top:6px}
-  .circle{position:absolute;right:-60px;bottom:-30px;width:210px;height:210px;border-radius:50%;background:var(--orange);z-index:1}
-  .tri{position:absolute;right:40px;bottom:-40px;width:0;height:0;border-left:110px solid transparent;border-right:110px solid transparent;border-bottom:120px solid var(--cream);z-index:2}
-  .badge{position:absolute;left:4px;top:24px;z-index:3;width:104px;height:104px;border-radius:50%;background:var(--yellow);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(10deg);text-align:center;box-shadow:0 6px 0 rgba(0,0,0,.12)}
+  .art{position:relative;height:230px;margin-top:4px}
+  .glow{position:absolute;right:-70px;bottom:-90px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(255,200,61,.55) 0%,rgba(255,200,61,.18) 45%,rgba(255,200,61,0) 70%);z-index:1}
+  .barsik{position:absolute;right:-8px;bottom:-40px;width:min(250px,62vw);height:auto;z-index:2;filter:drop-shadow(0 10px 18px rgba(11,31,75,.35));animation:bob 4s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(-6px)}}
+  @media (prefers-reduced-motion:reduce){.barsik{animation:none}}
+  .badge{position:absolute;left:4px;top:40px;z-index:3;width:104px;height:104px;border-radius:50%;background:var(--yellow);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(10deg);text-align:center;box-shadow:0 6px 0 rgba(0,0,0,.12)}
   .badge b{font-family:Unbounded;font-weight:900;font-size:22px;line-height:1}
   .badge span{font-size:10px;font-weight:800;margin-top:3px;line-height:1.15}
 
@@ -107,7 +109,7 @@
     <h1>Распечатай до&nbsp;пары, а&nbsp;не вместо неё</h1>
     <p class="sub">Терминалы прямо в холле вуза. Без очереди, без похода в&nbsp;копицентр.</p>
     <div class="art" aria-hidden="true">
-      <div class="circle"></div><div class="tri"></div>
+      <div class="glow"></div><img class="barsik" src="barsik.webp" alt="" width="560" height="603" fetchpriority="high">
       <div class="badge"><b>от 10</b><span>сом<br>за страницу</span></div>
     </div>
   </header>
