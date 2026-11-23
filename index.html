@@ -32,11 +32,19 @@
   .top img{width:30px;height:auto}
   .logo{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none;border-radius:10px}
   .logo:hover{opacity:.85}
-  .lang{position:relative;margin-left:auto;display:grid;grid-template-columns:1fr 1fr;background:rgba(255,255,255,.16);border-radius:999px;padding:3px;letter-spacing:.04em}
-  .lang button{position:relative;z-index:1;border:0;background:none;color:#fff;font:800 12px/1 Manrope,system-ui,sans-serif;letter-spacing:.06em;padding:8px 12px;border-radius:999px;cursor:pointer;transition:color .25s}
-  .lang button[aria-pressed="true"]{color:var(--ink)}
-  .lang .thumb{position:absolute;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:var(--yellow);transition:transform .28s cubic-bezier(.4,1.4,.6,1)}
+  .lang{position:relative;margin-left:auto;display:grid;grid-template-columns:repeat(3,1fr);border:2px solid #fff;border-radius:999px;padding:4px}
+  .lang button{position:relative;z-index:1;border:0;background:none;color:#fff;font:800 14px/1 Manrope,system-ui,sans-serif;padding:9px 14px;border-radius:999px;cursor:pointer;transition:color .25s}
+  .lang button[aria-pressed="true"]{color:var(--blue)}
+  .lang .thumb{position:absolute;top:4px;bottom:4px;left:4px;width:calc((100% - 8px)/3);border-radius:999px;background:var(--cream);transition:transform .28s cubic-bezier(.4,1.4,.6,1)}
   .lang[data-active="ky"] .thumb{transform:translateX(100%)}
+  .lang[data-active="en"] .thumb{transform:translateX(200%)}
+  .lang button:focus-visible{outline:2px solid var(--yellow);outline-offset:2px}
+  .logo{white-space:nowrap}
+  @media (max-width:400px){
+    .top{font-size:12px;letter-spacing:.06em;gap:8px}.logo{gap:8px}.top img{width:26px}
+    .lang{padding:3px}.lang .thumb{top:3px;bottom:3px;left:3px;width:calc((100% - 6px)/3)}
+    .lang button{font-size:13px;padding:8px 10px}
+  }
   @media (prefers-reduced-motion:reduce){.lang .thumb{transition:none}}
   .chip{display:inline-block;margin-top:26px;background:var(--orange);color:#fff;font-weight:800;font-size:11px;letter-spacing:.06em;padding:7px 12px;border-radius:999px;text-transform:uppercase}
   h1{font-family:Unbounded;font-weight:900;font-size:clamp(28px,8.4vw,42px);line-height:1.05;overflow-wrap:anywhere;margin-top:14px;position:relative;z-index:2}
@@ -143,7 +151,7 @@
 <div class="wrap">
 
   <header class="hero">
-    <div class="top"><a class="logo" href="https://basmaprint.kg/docs" aria-label="BASMA PRINT — собрать и распечатать работу"><img src="icon-white.png" alt="">BASMA PRINT</a><div class="lang" role="group" aria-label="Язык / Тил" data-active="ru"><span class="thumb"></span><button type="button" data-lang="ru" aria-pressed="true">РУС</button><button type="button" data-lang="ky" aria-pressed="false">КЫР</button></div></div>
+    <div class="top"><a class="logo" href="https://basmaprint.kg/docs" aria-label="BASMA PRINT — собрать и распечатать работу"><img src="icon-white.png" alt="">BASMA PRINT</a><div class="lang" role="group" aria-label="Язык / Тил / Language" data-active="ru"><span class="thumb"></span><button type="button" data-lang="ru" aria-pressed="true">Рус</button><button type="button" data-lang="ky" aria-pressed="false">Кыр</button><button type="button" data-lang="en" aria-pressed="false">Eng</button></div></div>
     <span class="chip" data-i18n="chip">Печать · скан · копия</span>
     <h1 data-i18n="h1">Студенческие работы&nbsp;— от&nbsp;файла до&nbsp;распечатки</h1>
     <p class="sub" data-i18n="sub">Терминалы прямо в холле вуза. Без очереди, без похода в&nbsp;копицентр.</p>
@@ -281,16 +289,55 @@
       "t3": "30 баракка чейин",
       "dAuto": "Арзандатуу төлөп жатканда автоматтык түрдө эсептелет."
   };
+  const EN = {
+      "chip": "Print · scan · copy",
+      "h1": "Student papers&nbsp;— from file to&nbsp;printout",
+      "sub": "Self-service terminals right in the university hall. No queues, no trips to the copy shop.",
+      "badgeB": "from 10",
+      "badgeS": "som<br>per page",
+      "m1": "Pick your university",
+      "m2": "Upload a file",
+      "m3": "Enter the code",
+      "m4": "Grab your printout",
+      "hLinks": "Where to tap",
+      "hPrices": "Prices",
+      "hPlaces": "Find us",
+      "bSite": "Build &amp; print your paper<small>University template · free title page</small>",
+      "bBot": "Telegram bot<small>@AlaTooPrintKioskBot — print via Telegram</small>",
+      "bTg": "Support on Telegram<small>Not printing? Payment failed? Message us</small>",
+      "bWa": "Support on WhatsApp<small>+996 708 060 406</small>",
+      "bIg": "Instagram<small>How-tos, memes and Barsik</small>",
+      "bTh": "Threads<small>@basmaprint.kg</small>",
+      "pPrint": "print, 1 page",
+      "pCopy": "photocopy",
+      "pScan": "document scan",
+      "dB": "Dynamic discount",
+      "dS": "up to −20% · details ›",
+      "note": "Black-and-white printing only for now. Pay by QR (ELQR) from any bank, no fees.",
+      "pl1": "Main hall · open while the building is open",
+      "pl2n": "KSTU (Polytech) named after I. Razzakov",
+      "pl2": "Building 1, hall · open while the building is open",
+      "open2gis": "Open in 2GIS",
+      "knuN": "KNU — coming soon",
+      "knu": "Follow us on Instagram so you don't miss the opening",
+      "dIntro": "The discount depends on the number of pages in your order:",
+      "t1": "up to 10 pages",
+      "t2": "up to 20 pages",
+      "t3": "up to 30 pages",
+      "dAuto": "The discount is applied automatically at checkout."
+  };
+  const DICT = { ky: KY, en: EN };
   const META = {
     ru: { title: document.title, close: "Закрыть" },
-    ky: { title: "BASMA PRINT — окуу жайда эле басып чыгаруу", close: "Жабуу" }
+    ky: { title: "BASMA PRINT — окуу жайда эле басып чыгаруу", close: "Жабуу" },
+    en: { title: "BASMA PRINT — printing right at your university", close: "Close" }
   };
   const nodes = [...document.querySelectorAll("[data-i18n]")];
   nodes.forEach(n => n.dataset.ru = n.innerHTML);
   const langBox = document.querySelector(".lang");
   function setLang(lang) {
     nodes.forEach(n => {
-      const v = lang === "ky" ? KY[n.dataset.i18n] : n.dataset.ru;
+      const v = lang === "ru" ? n.dataset.ru : DICT[lang][n.dataset.i18n];
       if (v != null) n.innerHTML = v;
     });
     document.documentElement.lang = lang;
